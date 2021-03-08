@@ -1,13 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManageSys.Web", "LibraryManageSys\LibraryManageSys.Web.csproj", "{F7B0CF36-0950-4F15-98AE-0BBE489348E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.Common", "LMS.Common\LMS.Common.csproj", "{758BCB91-7AC0-409D-BB7C-8D4F3637091E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLMS", "UnitTestLMS\UnitTestLMS.csproj", "{342D570E-49BC-4F3D-B6FA-F9D4DF9E618E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{56B78978-2B5A-40FB-AA1F-E4DC6F3B095E}"
+	ProjectSection(SolutionItems) = preProject
+		..\project report\library manage sys TDS.docx = ..\project report\library manage sys TDS.docx
+		..\project report\LMS project report.pptx = ..\project report\LMS project report.pptx
+		..\LuPeng_schedule.xlsx = ..\LuPeng_schedule.xlsx
+		..\..\苏大毕业设计\YB19271500046陆鹏-任务书.doc = ..\..\苏大毕业设计\YB19271500046陆鹏-任务书.doc
+		..\..\苏大毕业设计\project\新建文件夹\在线书城实践报告.doc = ..\..\苏大毕业设计\project\新建文件夹\在线书城实践报告.doc
+		..\..\苏大毕业设计\在线订餐系统.doc = ..\..\苏大毕业设计\在线订餐系统.doc
+		..\..\苏大毕业设计\毕业设计手册.doc = ..\..\苏大毕业设计\毕业设计手册.doc
+		..\..\苏大毕业设计\project\新建文件夹\网上书店系统毕业论文.doc = ..\..\苏大毕业设计\project\新建文件夹\网上书店系统毕业论文.doc
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +42,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D68838AD-00AE-4439-A834-60574F75BD2A}
 	EndGlobalSection
 EndGlobal
