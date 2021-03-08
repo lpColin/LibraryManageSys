@@ -1,0 +1,80 @@
+﻿@model LibraryManageSys.Models.BorrowItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BorrowItem</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.book.bookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.book.bookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reader.readerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reader.readerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.burrowTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.burrowTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ygBackTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ygBackTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sjBackTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sjBackTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.borrowOper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.borrowOper)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.backOper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.backOper)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

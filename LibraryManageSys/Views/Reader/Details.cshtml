@@ -1,0 +1,82 @@
+﻿@model LibraryManageSys.Models.Reader
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reader</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.readerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.readerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enableBorrowNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enableBorrowNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.readerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

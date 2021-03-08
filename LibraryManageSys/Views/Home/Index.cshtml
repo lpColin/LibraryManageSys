@@ -1,0 +1,23 @@
+﻿@model LibraryManageSys.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<div>
+     <h2 class="text-center">Welcome NCS Library Manage System</h2>
+     <hr>
+        <img class="img-circle" width="500" height="300" src="Images\index.JPG" alt="Home image" />   
+
+    <div class="float-buttom">
+        <p class="text-center">
+            Entry Manage System->Please click
+        </p>
+            <h2 class="text-center">&nbsp;&nbsp;
+             @if (Session["user"] == null)
+             {
+                 @Html.ActionLink("Login", "Login", "User");
+             } 
+                &nbsp; &nbsp;
+           @Html.ActionLink("Register", "Register", "User")
+           </h2>       
+    </div>
+</div>

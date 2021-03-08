@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Library Manage System</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Defined.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Library Manage System", "Index", "Home", null, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Introduction", "About", "Home")</li>
+                        <li>@Html.ActionLink("Register", "Register", "User")</li>
+                        @if(Session["user"]==null){
+                        <li>@Html.ActionLink("Login", "Login", "User")</li>
+                        }                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+            @if (Session["user"] != null)
+         {
+        <div class="display-user">
+            <h2 class="display-user-font">Welecom @Html.ActionLink(Session["userName"].ToString(), "Edit", "User") ! | @Html.ActionLink("Logout", "Logout", "User")</h2>
+        </div>
+        }       
+        <div class="PageBody">
+            @if (Session["user"] != null)
+            {
+            <div class="Sidebar">
+                <table class="gridtable">
+                    <tr>
+                        <th>personal info manage</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("modify password", "Edit", "User")</td>
+                    </tr>
+                    <tr>
+                        <th>Book Manage</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Search Book", "Index", "Book")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Add Book", "Create", "Book")</td>
+                    </tr>
+                    <tr>
+                        <th>Reader Manage</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Search Reader", "Index", "Reader")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Add Reader", "Create", "Reader")</td>
+                    </tr>
+                    <tr>
+                        <th>Borrow/return Manage</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Add Borrow Record", "Create", "BorrowItem")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Borrow Records", "Index", "BorrowItem")</td>
+                    </tr>                  
+                    <tr>
+                        <td>@Html.ActionLink("Return Records", "ShowBorrowRecord", "BorrowItem")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Cancel Records", "ShowCancelRecord", "BorrowItem")</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Back Index Page", "Index", "Home") </td>
+                    </tr>
+                </table>
+            </div>
+             <div class="container body-content" id="MainBody">
+                @RenderBody()
+                <hr />
+            </div>
+            }
+            else
+            {
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                </div>
+            } 
+        </div>
+        <div id="footer_position">
+            <footer class="panel-footer">
+                <p class="text-center">&copy; @DateTime.Now.Year - NCS Library Manage System</p>
+            </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

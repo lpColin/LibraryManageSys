@@ -1,0 +1,32 @@
+﻿@model LibraryManageSys.Models.BorrowItem
+
+@{
+    ViewBag.Title = "Cancel";
+}
+
+<h2>Cancel Book</h2>
+
+<div>
+    <h4>BorrowItem</h4>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.book.bookName)</th>
+            <th>@Html.DisplayNameFor(model => model.reader.readerName)</th>
+            <th>@Html.DisplayNameFor(model => model.status)</th>
+            <th>@Html.DisplayNameFor(model => model.burrowTime)</th>
+            <th>@Html.DisplayNameFor(model => model.borrowOper)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.book.bookName)</td>
+            <td>@Html.DisplayFor(model => model.reader.readerName)</td>
+            <td>@Html.DisplayFor(model => model.status)</td>
+            <td>@Html.DisplayFor(model => model.burrowTime)</td>
+            <td>@Html.DisplayFor(model => model.borrowOper)</td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Cancel", "Cancel2", new { id = Model.borrowId })</td>
+            <td>@Html.ActionLink("Back to List", "Index")</td>
+        </tr>
+    </table>
+</div>
+

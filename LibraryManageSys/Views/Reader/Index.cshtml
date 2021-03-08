@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<LibraryManageSys.Models.Reader>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Search Reader </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<br>
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+     <div class="form-horizontal">
+<table>
+    <tr>
+        <th>Reader Name </th>
+        <td id="Editor_left"> @Html.TextBox("readerName")</td>
+        <td id="Editor_left"><input type="submit" value="Search" class="btn btn-default" /></td>
+    </tr>     
+</table>
+    </div>
+} 
+
+<br>  
+<table class="table">
+    <tr>
+
+        <th>
+            readerName
+        </th>
+        <th>
+            phoneNum
+        </th>
+        <th>
+           Gender
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+           balance
+        </th>
+        <th>
+            enableBorrowNum
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.readerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balance)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.enableBorrowNum)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.readerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.readerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.readerId })
+        </td>
+    </tr>
+}
+</table>
+<div>
+    Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",new {page}))
+</div>

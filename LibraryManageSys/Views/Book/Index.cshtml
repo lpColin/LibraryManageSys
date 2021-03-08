@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<LibraryManageSys.Models.Book>
+@*@model IEnumerable<LibraryManageSys.Models.Book>*@
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Book Manage";
+}
+
+<h2>Search Book</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<br>
+@using (Html.BeginForm("Index","Book",FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <table>
+            <tr>
+                <th>Book Name </th>
+                <td id="Editor_left">@Html.TextBox("bookName", ViewBag.bookName as string)</td>
+                <th id="Editor_left">Author</th>
+                <td id="Editor_left">@Html.TextBox("author", ViewBag.author as string)</td>
+                <td id="Editor_left"><input type="submit" value="Search" class="btn btn-default" /></td>
+            </tr>
+        </table>
+    </div>
+} 
+<br>
+<table class="table">
+    <tr>
+        <th>
+            Book Name
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Publish
+        </th>
+        <th>
+            @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TypeSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+        </th>
+        <th>
+            @Html.ActionLink("Amount", "Index", new { sortOrder = ViewBag.AmountSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+        </th>
+        <th>
+            @Html.ActionLink("CurrAmount", "Index", new { sortOrder = ViewBag.CurrAmountSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+        </th>
+        <th>
+            @Html.ActionLink("AddTime", "Index", new { sortOrder = ViewBag.AddTimeSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.publish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.currAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.addTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bookId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bookId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bookId })
+        </td>
+    </tr>
+}
+</table>
+<br>
+<div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, bookName = ViewBag.bookName, author = ViewBag.author}))
+</div>
+

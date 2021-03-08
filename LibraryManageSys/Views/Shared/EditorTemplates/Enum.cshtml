@@ -1,0 +1,10 @@
+﻿@model Enum
+@{
+    List<SelectListItem> items = new List<SelectListItem>();
+    foreach (string item in Enum.GetNames(this.Model.GetType())) {
+        items.Add(new SelectListItem { Text = item, Value = item });
+    }
+}
+@Html.DropDownList("", items)
+
+

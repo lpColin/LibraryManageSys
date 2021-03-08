@@ -1,0 +1,44 @@
+﻿@model LibraryManageSys.Models.BorrowItem
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Borrow Book</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.bookId, "Please choose bookName", new { @class = "control-label col-md-2" })
+            <br>
+            <div class="col-md-10" id="Editor_left">
+                @Html.DropDownList("bookId", String.Empty)
+                @Html.ValidationMessageFor(model => model.bookId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.readerId, "Please choose readerName", new { @class = "control-label col-md-2" })
+            <br>
+            <div class="col-md-10" id="Editor_left">
+                @Html.DropDownList("readerId", String.Empty)
+                @Html.ValidationMessageFor(model => model.readerId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
