@@ -11,10 +11,10 @@ namespace LibraryManageSys.Models
     /// </summary>
     public class LMSEntitys:DbContext
     {
-        public LMSEntitys()
-            : base("libraryManageConnectionString")
+        public LMSEntitys() : base("sqliteDB")
         {
-            //Database.CreateIfNotExists();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LMSEntitys, ConfigurationSqlite>());
+            this.Configuration.LazyLoadingEnabled = false; //关闭延迟加载
         }
         public DbSet<User> users { get; set; }
 

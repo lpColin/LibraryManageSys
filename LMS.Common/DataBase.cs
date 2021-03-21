@@ -26,7 +26,6 @@ namespace LMS.Common
        }
        #endregion
 
-
        #region 关闭数据库连接
        public void close() {
            if (con != null) {
