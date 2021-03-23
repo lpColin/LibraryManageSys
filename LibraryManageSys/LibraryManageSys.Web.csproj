@@ -173,7 +173,11 @@
     <Compile Include="DAL\ICommonDal.cs" />
     <Compile Include="DAL\IReaderDal.cs" />
     <Compile Include="DAL\IUserDal.cs" />
-    <Compile Include="DAL\LMSInitializer.cs" />
+    <Compile Include="Migrations\202103211542358_init.cs" />
+    <Compile Include="Migrations\202103211542358_init.designer.cs">
+      <DependentUpon>202103211542358_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LMSInitializer.cs" />
     <Compile Include="DAL\ReaderRepository.cs" />
     <Compile Include="DAL\RepositoryFactory.cs" />
     <Compile Include="DAL\UserRepository.cs" />
@@ -181,13 +185,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Log\LogHelper.cs" />
-    <Compile Include="Migrations\202103210452376_init.cs" />
-    <Compile Include="Migrations\202103210452376_init.designer.cs">
-      <DependentUpon>202103210452376_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BorrowItem.cs" />
-    <Compile Include="Models\ConfigurationSqlite.cs" />
     <Compile Include="Models\LMSEntitys.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Reader.cs" />
@@ -198,9 +197,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\Defined.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -212,7 +215,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="log4net.config" />
     <Content Include="App_Data\LMS.db" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -277,8 +286,8 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103210452376_init.resx">
-      <DependentUpon>202103210452376_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103211542358_init.resx">
+      <DependentUpon>202103211542358_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

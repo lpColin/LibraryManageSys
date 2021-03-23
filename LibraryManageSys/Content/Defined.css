@@ -1,18 +1,4 @@
-﻿/*#content12{
-   min-height:100%;
-   position:relative;
-   height:100%;
-}
-
-#main2{
-    padding-bottom:60px;
-}
-
-.PageBody {
-    width:100%;
-    height:auto;
-}*/
-.Sidebar {
+﻿.Sidebar {
    margin-top:65px;
    margin-left:100px;
    float:left;
@@ -97,4 +83,15 @@ table.gridtable td {
 
 .float-buttom {
 padding-top:30px;
+}
+
+.secondmenu a {
+    font-size: 12px;
+    color: #4A515B;
+    text-align: center;
+}
+
+.secondmenu li.active {
+    background-color: #eee;
+    border-color: #428bca;
 }

@@ -1,4 +1,4 @@
-﻿namespace LibraryManageSys.Models
+﻿namespace LibraryManageSys.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
