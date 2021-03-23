@@ -17,14 +17,15 @@ namespace LibraryManageSys
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.bundle.min.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/custom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",                  
+                      "~/Content/bootstrap.min.css",                  
                       "~/Content/font-awesome.min.css",
-                      "~/Content/site.css",
+                      "~/Content/nprogress.css",
+                      "~/Content/animate.min.css",          
                       "~/Content/custom.css"));
         }
     }
