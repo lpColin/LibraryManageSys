@@ -1,54 +1,59 @@
 ﻿#MainBody {
-   float:left;
-   margin-left:0px;
-    width:900px;
-    height:585px;
-    background-color:#EED5D2   
+    float: left;
+    margin-left: 0px;
+    width: 900px;
+    height: 585px;
+    background-color: #EED5D2
 }
-#Editor_left{
+
+#Editor_left {
     padding-left: 30px;
 }
+
 .display-user {
-    float:right;
-    padding-right:50px;
+    float: right;
+    padding-right: 50px;
 }
+
 .display-user-font {
-    font-family:Arial;
+    font-family: Arial;
 }
 
 .display-table {
-border-collapse:collapse;
+    border-collapse: collapse;
 }
 
 table.gridtable {
-	font-family: verdana,arial,sans-serif;
-	font-size:15px;
-	color:#333333;
-	border-width: 1px;
-	border-color: #666666;
-	border-collapse: collapse;
-}
-table.gridtable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #dedede;
-}
-table.gridtable td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #ffffff;
+    font-family: verdana,arial,sans-serif;
+    font-size: 15px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
 }
 
+    table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+    }
+
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+    }
+
 .background {
-     background-image:url(../Images/image003.jpg);
+    background-image: url(../Images/image003.jpg);
 }
 
 .float-buttom {
-padding-top:30px;
+    padding-top: 30px;
 }
 
 .secondmenu a {
@@ -63,13 +68,15 @@ padding-top:30px;
 }
 
 .footer-wrapper {
-	bottom: 0px;
-	clear: both;
-	display: block;
-	padding: 5px 0 0 0;
-	position: fixed;
-	width: 100%;
-	text-align: center;
-	background: #F7F7F7;
-	font: normal 20px Helvetica, Arial, sans-serif;
+    bottom: 0px;
+    clear: both;
+    display: block;
+    padding: 5px 0 0 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    background: #F7F7F7;
+    font: normal 15px Helvetica, Arial, sans-serif;
+    margin-left: 0px;
+    z-index: 999;
 }

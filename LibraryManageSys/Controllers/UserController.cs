@@ -16,17 +16,17 @@ using System.Text;
 
 namespace LibraryManageSys.Controllers
 {
-    public class UserController : Controller 
+    public class UserController : Controller
     {
         private LMSEntitys db = ContextFactory.GetCurrentContext();
         private UserService userService = new UserService();
+
         // GET: /User/
-        public ActionResult Index()
+        public ActionResult UserList()
         {
             return View(db.users.ToList());
         }
 
-        // GET: /User/Create
         public ActionResult Register()
         {
             return View();
@@ -52,7 +52,7 @@ namespace LibraryManageSys.Controllers
 
                     else if (user != null)
                     {
-                        userService.Add(user);                        
+                        userService.Add(user);
                         return View("RegisterSuccess");
                     }
                     else
@@ -62,15 +62,24 @@ namespace LibraryManageSys.Controllers
                     }
                 }
             }
-            catch (Exception e){
+            catch (Exception e)
+            {
                 LogHelper.WriteLog(typeof(UserController), e);
                 throw e;
             }
-                return View(userViewModel);
+            return View(userViewModel);
         }
 
-        public ActionResult Login() {
-            return View();
+        public ActionResult Login()
+        {
+            if (Session["userName"] != null)
+            {
+                return RedirectToAction("Index", "Book");
+            }
+            else 
+            {
+                return View("LoginAndRegister");
+            }
         }
 
         [HttpPost]
@@ -78,33 +87,30 @@ namespace LibraryManageSys.Controllers
         public ActionResult Login(LoginViewModel Loginuser)
         {
             try
-            {              
+            {
                 if (ModelState.IsValid)
                 {
-                    var _user = userService.Find(Loginuser.userName);
+                    var _user = userService.Find(Loginuser.UserName);
 
-                    if (_user == null)
+                    if (_user != null && Loginuser.Password == _user.password)
                     {
-                        ModelState.AddModelError("userName", "userName is not exist");
-                    }
-                    else if (Loginuser.password == _user.password)
-                    {
-                        Loginuser.userId = _user.userId;
+                        Loginuser.UserId = _user.userId;
                         Session.Add("user", _user);
                         Session["userName"] = _user.userName;
                         return RedirectToAction("Index", "Book");
                     }
                     else
                     {
-                        ModelState.AddModelError("password", "password is incorrect");
+                        ModelState.AddModelError("", "用户名或者密码不匹配！");
                     }
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 LogHelper.WriteLog(typeof(UserController), e);
                 throw e;
             }
-            return View(Loginuser);
+            return View("LoginAndRegister", Loginuser);
         }
 
         // GET: /User/Edit/5
@@ -113,19 +119,20 @@ namespace LibraryManageSys.Controllers
             User loginuser = new User();
             if (Session["user"] != null)
             {
-                 loginuser= (User)Session["user"];
+                loginuser = (User)Session["user"];
             }
-            else {
+            else
+            {
                 return RedirectToAction("Login", "User");
             }
-                if (loginuser.userId.ToString() == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                if (loginuser == null)
-                {
-                    return HttpNotFound();
-                }           
+            if (loginuser.userId.ToString() == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (loginuser == null)
+            {
+                return HttpNotFound();
+            }
             return View(loginuser);
         }
 
@@ -135,7 +142,7 @@ namespace LibraryManageSys.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(User LogionUser)
-        {          
+        {
             if (ModelState.IsValid)
             {
                 if (LogionUser != null)
@@ -175,9 +182,10 @@ namespace LibraryManageSys.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Logout() {
+        public ActionResult Logout()
+        {
             Session.Clear();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "User");
         }
 
         protected override void Dispose(bool disposing)

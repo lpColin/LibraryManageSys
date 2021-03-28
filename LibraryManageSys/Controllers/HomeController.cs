@@ -1,4 +1,7 @@
-﻿using LibraryManageSys.Models;
+﻿using LibraryManageSys.BLL;
+using LibraryManageSys.DAL;
+using LibraryManageSys.Models;
+using LMS.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +12,19 @@ namespace LibraryManageSys.Controllers
 {
     public class HomeController : Controller
     {
+        private LMSEntitys db = ContextFactory.GetCurrentContext();
+        private UserService userService = new UserService();
+
         public ActionResult Index()
         {
-
-            return View();
+            if (Session["userName"] != null)
+            {
+                return RedirectToAction("Index", "Book");
+            }
+            else 
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
 
         public ActionResult About()

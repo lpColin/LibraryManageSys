@@ -9,7 +9,7 @@ namespace LibraryManageSys
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -17,16 +17,24 @@ namespace LibraryManageSys
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.bundle.min.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/custom.js"));
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/bootstrap-notify.min.js",
+                      "~/Scripts/custom.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                    "~/Scripts/perfect-scrollbar.min.js",
+                    "~/Scripts/lightyear.js",
+                    "~/Scripts/main.min.js"
+          ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",                  
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/nprogress.css",
-                      "~/Content/animate.min.css",          
-                      "~/Content/custom.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/materialdesignicons.min.css",
+                      "~/Content/animate.min.css",
+                      "~/Content/custom.css",
+                      "~/Content/style.min.css"
+                      ));
         }
     }
 }
