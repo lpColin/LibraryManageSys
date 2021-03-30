@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,19 +20,22 @@ namespace LibraryManageSys.Models
 
         [Required]
         [UIHint("Enum")]
-        [Display(Name="Borrow Status")]
+        [Display(Name="借书状态")]
         public Status status { get; set; }
 
+        [Display(Name = "借书时间")]
         public DateTime burrowTime { get; set;}
 
-        [Display(Name = "Preset BackTime")]
+        [Display(Name = "最后还书时间")]
         public DateTime ygBackTime { get; set; }
 
-        [Display(Name = "Fact BackTime")]
+        [Display(Name = "实际还书时间")]
         public DateTime sjBackTime { get; set; }
 
+        [Display(Name = "借书操作人")]
         public string borrowOper { get; set; }
 
+        [Display(Name = "还书操作人")]
         public string backOper { get; set; }
 
         public int bookId { get; set; }
@@ -44,4 +48,11 @@ namespace LibraryManageSys.Models
         
     }
     public enum Status {Borrow,Return,Cancel}
+    public class BorrowViewModel
+    {
+        public IPagedList<LibraryManageSys.Models.BorrowItem> BorrowItems { get; set; }
+
+        public BorrowItem BorrowItem { get; set; }
+    }
 }
+

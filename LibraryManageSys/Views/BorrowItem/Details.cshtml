@@ -1,80 +1,88 @@
 ﻿@model LibraryManageSys.Models.BorrowItem
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
+    ViewBag.Title = "详情";
 }
 
-<h2>Details</h2>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">@ViewBag.Title</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.book.bookName)
+                    </dt>
 
-<div>
-    <h4>BorrowItem</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.book.bookName)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.book.bookName)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.book.bookName)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.reader.readerName)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.reader.readerName)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.reader.readerName)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.reader.readerName)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.status)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.status)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.burrowTime)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.burrowTime)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.burrowTime)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.burrowTime)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ygBackTime)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ygBackTime)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ygBackTime)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ygBackTime)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.sjBackTime)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sjBackTime)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.sjBackTime)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sjBackTime)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.borrowOper)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.borrowOper)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.borrowOper)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.borrowOper)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.backOper)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.backOper)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.backOper)
+                    </dd>
+                </dl>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.backOper)
-        </dd>
-    </dl>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

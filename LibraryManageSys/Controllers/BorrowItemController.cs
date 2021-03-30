@@ -17,10 +17,12 @@ namespace LibraryManageSys.Controllers
         private LMSEntitys db = ContextFactory.GetCurrentContext();
 
         // GET: /BorrowItem/
-        public ActionResult Index(int page =1)
+        public ActionResult Index(int page = 1)
         {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            return View(borrowitems.Where(b=>b.status==Status.Borrow).OrderBy(p=>p.burrowTime).ToPagedList(page,5));
+            var borrowItemVideMode = new BorrowViewModel(); 
+            borrowItemVideMode.BorrowItems = borrowitems.Where(b => b.status == Status.Borrow).OrderBy(p => p.burrowTime).ToPagedList(page, 5);
+            return View(borrowItemVideMode);
         }
 
         // GET: /BorrowItem/Details/5
@@ -42,7 +44,7 @@ namespace LibraryManageSys.Controllers
         public ActionResult Create()
         {
             BorrowItem _borrowItem = new BorrowItem();
-            _borrowItem.status = Status.Borrow;  
+            _borrowItem.status = Status.Borrow;
             ViewBag.bookId = new SelectList(db.books, "bookId", "bookName");
             ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName");
 
@@ -54,7 +56,7 @@ namespace LibraryManageSys.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="borrowId,status,burrowTime,ygBackTime,sjBackTime,borrowOper,backOper,bookId,readerId")] BorrowItem borrowitem)
+        public ActionResult Create([Bind(Include = "borrowId,status,burrowTime,ygBackTime,sjBackTime,borrowOper,backOper,bookId,readerId")] BorrowItem borrowitem)
         {
             borrowitem.sjBackTime = new DateTime(2000, 01, 01);
             borrowitem.burrowTime = DateTime.Now;
@@ -63,10 +65,11 @@ namespace LibraryManageSys.Controllers
             {
                 borrowitem.borrowOper = Session["userName"].ToString();
             }
-            else {
+            else
+            {
                 return RedirectToAction("Login", "User");
             }
-            
+
             borrowitem.status = Status.Borrow;
             ViewBag.bookId = new SelectList(db.books, "bookId", "bookName");
             ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName");
@@ -96,8 +99,9 @@ namespace LibraryManageSys.Controllers
                 ViewBag.bookId = new SelectList(db.books, "bookId", "bookName", borrowitem.bookId);
                 ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName", borrowitem.readerId);
             }
-            catch (Exception e){
-                LogHelper.WriteLog(typeof(BorrowItemController),e);
+            catch (Exception e)
+            {
+                LogHelper.WriteLog(typeof(BorrowItemController), e);
                 throw e;
             }
             return View(borrowitem);
@@ -116,26 +120,8 @@ namespace LibraryManageSys.Controllers
                 LogHelper.WriteLog(typeof(BorrowItemController), "HttpNotFound");
                 return HttpNotFound();
             }
-            return View("Return",borrowitem);
+            return View("Return", borrowitem);
         }
-
-        // POST: /BorrowItem/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Return([Bind(Include = "borrowId,status,burrowTime,ygBackTime,sjBackTime,borrowOper,backOper,bookId,readerId")] BorrowItem borrowitem)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(borrowitem).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.bookId = new SelectList(db.books, "bookId", "bookName", borrowitem.bookId);
-        //    ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName", borrowitem.readerId);
-        //    return View(borrowitem);
-        //}
 
         public ActionResult Return2(int? id)
         {
@@ -155,10 +141,11 @@ namespace LibraryManageSys.Controllers
                 {
                     borrowitem.backOper = Session["userName"].ToString();
                 }
-                else {
+                else
+                {
                     return RedirectToAction("Login", "User");
                 }
-                
+
                 borrowitem.sjBackTime = DateTime.Now;
                 db.Entry(borrowitem).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -175,9 +162,10 @@ namespace LibraryManageSys.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ShowBorrowRecord(int page =1) { 
+        public ActionResult ShowBorrowRecord(int page = 1)
+        {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            return View(borrowitems.Where(b => b.status == Status.Return).OrderBy(p => p.burrowTime).ToPagedList(page,5));
+            return View(borrowitems.Where(b => b.status == Status.Return).OrderBy(p => p.burrowTime).ToPagedList(page, 5));
         }
 
 
@@ -197,7 +185,7 @@ namespace LibraryManageSys.Controllers
             return View("Cancel", borrowitem);
         }
 
-       //deal with cancel operation
+        //deal with cancel operation
         public ActionResult Cancel2(int? id)
         {
             IBorrowItemDal BorrowItemDal = RepositoryFactory.BorrowRepository;
@@ -216,7 +204,8 @@ namespace LibraryManageSys.Controllers
                 {
                     borrowitem.backOper = Session["userName"].ToString();
                 }
-                else {
+                else
+                {
                     return RedirectToAction("Login", "User");
                 }
                 borrowitem.sjBackTime = DateTime.Now;
@@ -236,10 +225,10 @@ namespace LibraryManageSys.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ShowCancelRecord(int page=1)
+        public ActionResult ShowCancelRecord(int page = 1)
         {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            return View(borrowitems.Where(b => b.status == Status.Cancel).OrderBy(p => p.burrowTime).ToPagedList(page,5));
+            return View(borrowitems.Where(b => b.status == Status.Cancel).OrderBy(p => p.burrowTime).ToPagedList(page, 5));
         }
 
         // GET: /BorrowItem/Delete/5
