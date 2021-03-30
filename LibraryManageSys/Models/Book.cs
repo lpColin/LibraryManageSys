@@ -13,7 +13,6 @@ namespace LibraryManageSys.Models
     /// <remarks>created:2014.8.25</remarks>
     /// </summary>
     /// 
-    [Table("tb_book")]
     public class Book
     {
 
@@ -21,49 +20,36 @@ namespace LibraryManageSys.Models
         public int bookId { get; set; }
 
         [Required]
-        [Display(Name="Book Name")]
+        [Display(Name="书名")]
         public string bookName { get; set; }
 
-        [Display(Name = "Author")]
+        [Display(Name = "作者")]
         public string author { get; set; }
 
-        [Display(Name = "Publish")]
+        [Display(Name = "出版社")]
         public string publish { get; set; }
        
-        [Display(Name = "Type")]
+        [Display(Name = "类型")]
         [Required]
         public string type { get; set; }
 
-        [Display(Name = "Amount")]
+        [Display(Name = "数量")]
         public int amount { get; set; }
 
-        [Display(Name = "CurrAmount")]
+        [Display(Name = "剩余数量")]
         public int currAmount { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public string imageURL { get; set; }
 
-        [Display(Name = "Introduction")]
+        [Display(Name = "介绍")]
         public string introduction { get; set; }
 
-        [Display(Name = "AddTime")]
+        [Display(Name = "添加时间")]
         [DataType(DataType.DateTime)]
         public DateTime addTime { get; set; }
 
-        [Display(Name = "AddName")]
+        [Display(Name = "操作人")]
         public string addName { get; set; }
-
-
-        public List<SelectListItem> getBookTypeItems()
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Story", Value = "Story", Selected = true });
-            items.Add(new SelectListItem { Text = "Prose", Value = "Prose", });
-            items.Add(new SelectListItem { Text = "Poetry", Value = "Poetry", });
-            items.Add(new SelectListItem { Text = "History", Value = "History", });
-            items.Add(new SelectListItem { Text = "Medicine", Value = "Medicine", });
-            items.Add(new SelectListItem { Text = "Technology", Value = "Technology", });
-            return items;
-        }
     }
 }

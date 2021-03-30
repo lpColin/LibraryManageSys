@@ -1,83 +1,105 @@
 ﻿@model PagedList.IPagedList<LibraryManageSys.Models.Reader>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainContentLayout.cshtml";
+    ViewBag.Title = "读者管理";
 }
 
-<h2>Search Reader </h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<br>
-@using (Html.BeginForm())
-{
-     @Html.AntiForgeryToken()
-     <div class="form-horizontal">
-<table>
-    <tr>
-        <th>Reader Name </th>
-        <td id="Editor_left"> @Html.TextBox("readerName")</td>
-        <td id="Editor_left"><input type="submit" value="Search" class="btn btn-default" /></td>
-    </tr>     
-</table>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-toolbar clearfix">
+                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <input type="hidden" name="search_field" id="search-field" value="title">
+                            <button class="btn btn-default" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+                                查询
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入关键字">
+                    </div>
+                </form>
+                <div class="toolbar-btn-action">
+                    @Html.ActionLink("新增", "Create", new { }, new { @class = "btn btn-primary m-r-5 mdi mdi-plus", data_toggle = "modal", data_target = "#gridSystemModal" })
+                    @Html.ActionLink("删除", "Delete", new { }, new { @class = "btn btn-danger m-r-5 mdi mdi-window-close" })
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="lyear-checkbox checkbox-primary">
+                                        <input type="checkbox" id="check-all"><span></span>
+                                    </label>
+                                </th>
+                                <th>
+                                    读者名字
+                                </th>
+                                <th>
+                                    电话号码
+                                </th>
+                                <th>
+                                    性别
+                                </th>
+                                <th>
+                                    邮箱
+                                </th>
+                                <th>
+                                    余额
+                                </th>
+                                <th>
+                                    可借数量
+                                </th>
+                                <th>
+                                    操作
+                                </th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            <label class="lyear-checkbox checkbox-primary">
+                                <input type="checkbox" name="ids[]" value="1"><span></span>
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.readerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phoneNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.balance)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.enableBorrowNum)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                @Html.ActionLink("编辑", "Edit", new { id = item.readerId }, new { @class = "btn btn-sm btn-default mdi mdi-pencil", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                @Html.ActionLink("查看", "Details", new { id = item.readerId }, new { @class = "btn btn-sm btn-default mdi mdi-eye", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                @Html.ActionLink("删除", "Delete", new { id = item.readerId }, new { @class = "btn btn-sm btn-default mdi mdi-window-close", data_toggle = "modal", data_target = "#gridSystemModal" })
+                            </div>
+                        </td>
+                    </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="card-body">
+                总计：@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
     </div>
-} 
-
-<br>  
-<table class="table">
-    <tr>
-
-        <th>
-            readerName
-        </th>
-        <th>
-            phoneNum
-        </th>
-        <th>
-           Gender
-        </th>
-        <th>
-            email
-        </th>
-        <th>
-           balance
-        </th>
-        <th>
-            enableBorrowNum
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.readerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phoneNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.balance)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.enableBorrowNum)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.readerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.readerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.readerId })
-        </td>
-    </tr>
-}
-</table>
-<div>
-    Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index",new {page}))
 </div>

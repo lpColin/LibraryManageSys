@@ -26,6 +26,11 @@ namespace LibraryManageSys.Models
 
         public DbSet<BorrowItem> borrowItems { get; set; }
 
+        /// <summary>
+        /// 字典表
+        /// </summary>
+        public DbSet<Dictionary> Dictionarys { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Database.SetInitializer(new SqliteDropCreateDatabaseWhenModelChanges<SqliteDbContext>(modelBuilder));

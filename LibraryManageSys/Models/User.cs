@@ -11,7 +11,6 @@ namespace LibraryManageSys.Models
     /// user entity created
     /// <remarks>create:2014.8.25</remarks>
     /// </summary>
-    [Table("tb_user")]
     public class User
     {
         [Key]

@@ -147,7 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Shared\DisplayTemplates\" />
+    <Folder Include="Images\Books\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -161,6 +161,7 @@
     <Compile Include="BLL\UserService.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BorrowItemController.cs" />
+    <Compile Include="Controllers\Common.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -168,15 +169,16 @@
     <Compile Include="DAL\BookRepository.cs" />
     <Compile Include="DAL\CommonDal.cs" />
     <Compile Include="DAL\ContextFactory.cs" />
+    <Compile Include="Migrations\202103301414323_init.cs" />
+    <Compile Include="Migrations\202103301414323_init.Designer.cs">
+      <DependentUpon>202103301414323_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="DAL\IBookDal.cs" />
     <Compile Include="DAL\IBorrowItemDal.cs" />
     <Compile Include="DAL\ICommonDal.cs" />
     <Compile Include="DAL\IReaderDal.cs" />
     <Compile Include="DAL\IUserDal.cs" />
-    <Compile Include="Migrations\202103211542358_init.cs" />
-    <Compile Include="Migrations\202103211542358_init.designer.cs">
-      <DependentUpon>202103211542358_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\LMSInitializer.cs" />
     <Compile Include="DAL\ReaderRepository.cs" />
     <Compile Include="DAL\RepositoryFactory.cs" />
@@ -473,6 +475,7 @@
     <Content Include="Scripts\jquery.min.map" />
     <Content Include="Views\Shared\ValidationSummary.cshtml" />
     <Content Include="Views\Shared\MainContentLayout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Dialog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -490,8 +493,8 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103211542358_init.resx">
-      <DependentUpon>202103211542358_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103301414323_init.resx">
+      <DependentUpon>202103301414323_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

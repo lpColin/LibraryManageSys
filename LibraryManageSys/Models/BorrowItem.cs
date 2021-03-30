@@ -12,7 +12,6 @@ namespace LibraryManageSys.Models
     /// <remarks>created:2014.8.25</remarks>
     /// </summary>
     /// 
-    [Table("tb_borrowItem")]
     public class BorrowItem
     {
         [Key]

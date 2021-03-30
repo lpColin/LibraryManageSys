@@ -15,15 +15,13 @@
                 <li class="nav-item nav-item-has-subnav">
                     <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 图书管理</a>
                     <ul class="nav nav-subnav">
-                        <li> @Html.ActionLink("图书查询", "Index", "Book", new { @class = "" }) </li>
-                        <li> @Html.ActionLink("图书添加", "Create", "Book") </li>
+                        <li> @Html.ActionLink("图书查询", "Index", "Book") </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-subnav">
                     <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 读者管理</a>
                     <ul class="nav nav-subnav">
-                        <li> @Html.ActionLink("读者查询", "Index", "Reader")</li>
-                        <li>@Html.ActionLink("读者新增", "Create", "Reader")</li>
+                        <li> @Html.ActionLink("读者管理", "Index", "Reader")</li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-subnav">
@@ -208,10 +206,11 @@
 </div>
 
 <!--对话框-->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="gridSystemModal">
+<!--<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="gridSystemModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         </div>
     </div>
-</div>
+</div>-->
 <!--对话框-->
+@Html.Partial("EditorTemplates/Dialog", ViewData.ModelState);

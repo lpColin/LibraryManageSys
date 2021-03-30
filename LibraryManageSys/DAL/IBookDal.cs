@@ -8,6 +8,6 @@ namespace LibraryManageSys.DAL
 {
     public interface IBookDal : ICommonDal<Book>
     {
-        List<Book> FindBookList(string bookName, string author);
+        List<Book> FindBookList(string keywords);
     }
 }

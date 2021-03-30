@@ -11,37 +11,39 @@ namespace LibraryManageSys.Models
     /// reader entity created
     /// <remarks>create:2014.8.25</remarks>
     /// </summary>
-    [Table("tb_reader")]
     public class Reader
     {
         [Key]
         public int readerId { get; set; }
 
         [Required(ErrorMessage="readerName not null")]
-        [Display(Name="Reader Name")]
+        [Display(Name="读者名字")]
         public string readerName { get; set; }
 
-        [Display(Name = "Tell")]
+        [Display(Name = "电话号码")]
         [DataType(DataType.PhoneNumber)]
         public string phoneNum { get; set; }
 
-        [UIHint("Enum")]
+        [UIHint("性别")]
         public Gender Gender { get; set; }
 
         //[DataType(DataType.EmailAddress,ErrorMessage="email address format is incorrect")]
-        [UIHint("EmailAddress")]
+        [UIHint("邮箱")]
         public string email { get; set; }
 
+        [Display(Name = "可用余额")]
         public double balance { get; set; }
 
         [Required]
-        [Display(Name = "Available Amount")]
+        [Display(Name = "可借数量")]
         public int enableBorrowNum { get; set; }
 
         [Required]
+        [Display(Name = "创建人")]
         public string createName { get; set; }
 
         [DataType(DataType.DateTime)]
+        [Display(Name = "创建时间")]
         public DateTime createTime { get; set; }
 
     }

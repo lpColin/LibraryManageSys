@@ -1,4 +1,4 @@
-﻿namespace LibraryManageSys.Migrations
+namespace LibraryManageSys.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -8,7 +8,7 @@
         public override void Up()
         {
             CreateTable(
-                "dbo.tb_book",
+                "dbo.Book",
                 c => new
                     {
                         bookId = c.Int(nullable: false, identity: true),
@@ -26,7 +26,7 @@
                 .PrimaryKey(t => t.bookId);
             
             CreateTable(
-                "dbo.tb_borrowItem",
+                "dbo.BorrowItem",
                 c => new
                     {
                         borrowId = c.Int(nullable: false, identity: true),
@@ -40,13 +40,13 @@
                         readerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.borrowId)
-                .ForeignKey("dbo.tb_book", t => t.bookId, cascadeDelete: true)
-                .ForeignKey("dbo.tb_reader", t => t.readerId, cascadeDelete: true)
+                .ForeignKey("dbo.Book", t => t.bookId, cascadeDelete: true)
+                .ForeignKey("dbo.Reader", t => t.readerId, cascadeDelete: true)
                 .Index(t => t.bookId)
                 .Index(t => t.readerId);
             
             CreateTable(
-                "dbo.tb_reader",
+                "dbo.Reader",
                 c => new
                     {
                         readerId = c.Int(nullable: false, identity: true),
@@ -62,7 +62,19 @@
                 .PrimaryKey(t => t.readerId);
             
             CreateTable(
-                "dbo.tb_user",
+                "dbo.Dictionary",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Type = c.String(maxLength: 50),
+                        Code = c.String(maxLength: 50),
+                        DisplayName = c.String(maxLength: 50),
+                        Remark = c.String(maxLength: 500),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.User",
                 c => new
                     {
                         userId = c.Int(nullable: false, identity: true),
@@ -75,14 +87,15 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.tb_borrowItem", "readerId", "dbo.tb_reader");
-            DropForeignKey("dbo.tb_borrowItem", "bookId", "dbo.tb_book");
-            DropIndex("dbo.tb_borrowItem", new[] { "readerId" });
-            DropIndex("dbo.tb_borrowItem", new[] { "bookId" });
-            DropTable("dbo.tb_user");
-            DropTable("dbo.tb_reader");
-            DropTable("dbo.tb_borrowItem");
-            DropTable("dbo.tb_book");
+            DropForeignKey("dbo.BorrowItem", "readerId", "dbo.Reader");
+            DropForeignKey("dbo.BorrowItem", "bookId", "dbo.Book");
+            DropIndex("dbo.BorrowItem", new[] { "readerId" });
+            DropIndex("dbo.BorrowItem", new[] { "bookId" });
+            DropTable("dbo.User");
+            DropTable("dbo.Dictionary");
+            DropTable("dbo.Reader");
+            DropTable("dbo.BorrowItem");
+            DropTable("dbo.Book");
         }
     }
 }

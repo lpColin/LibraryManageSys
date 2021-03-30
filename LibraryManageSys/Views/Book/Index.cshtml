@@ -3,31 +3,11 @@
 @using PagedList.Mvc;
 @{
     Layout = "~/Views/Shared/MainContentLayout.cshtml";
-    ViewBag.Title = "图书查询";
+    ViewBag.Title = "图书管理";
 }
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            @*<div class="card-header">
-                    <p>
-                        @Html.ActionLink("图书添加", "Create")
-                    </p>
-                    <br />
-                    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
-                    {
-                        <div class="form-horizontal">
-                            <table>
-                                <tr>
-                                    <th>书名 </th>
-                                    <td id="Editor_left">@Html.TextBox("bookName", ViewBag.bookName as string)</td>
-                                    <th id="Editor_left">作者</th>
-                                    <td id="Editor_left">@Html.TextBox("author", ViewBag.author as string)</td>
-                                    <td id="Editor_left"><input type="submit" value="查 询" class="btn btn-primary" /></td>
-                                </tr>
-                            </table>
-                        </div>
-                    }
-                </div>*@
             <div class="card-toolbar clearfix">
                 <form class="pull-right search-bar" method="get" action="#!" role="form">
                     <div class="input-group">
@@ -37,7 +17,7 @@
                                 查询
                             </button>
                         </div>
-                        <input type="text" class="form-control" value="" name="keyword" placeholder="请输入关键字">
+                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入关键字">
                     </div>
                 </form>
                 <div class="toolbar-btn-action">
@@ -65,16 +45,16 @@
                                     出版社
                                 </th>
                                 <th>
-                                    @Html.ActionLink("图书类型", "Index", new { sortOrder = ViewBag.TypeSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+                                    @Html.ActionLink("图书类型", "Index", new { sortOrder = ViewBag.TypeSortParm, keyword = ViewBag.keyword })
                                 </th>
                                 <th>
-                                    @Html.ActionLink("入库数量", "Index", new { sortOrder = ViewBag.AmountSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+                                    @Html.ActionLink("入库数量", "Index", new { sortOrder = ViewBag.AmountSortParm, keyword = ViewBag.keyword })
                                 </th>
                                 <th>
-                                    @Html.ActionLink("现存数量", "Index", new { sortOrder = ViewBag.CurrAmountSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+                                    @Html.ActionLink("现存数量", "Index", new { sortOrder = ViewBag.CurrAmountSortParm, keyword = ViewBag.keyword })
                                 </th>
                                 <th>
-                                    @Html.ActionLink("添加时间", "Index", new { sortOrder = ViewBag.AddTimeSortParm, bookName = ViewBag.bookName, author = ViewBag.author })
+                                    @Html.ActionLink("添加时间", "Index", new { sortOrder = ViewBag.AddTimeSortParm, keyword = ViewBag.keyword })
                                 </th>
                                 <th>
                                     操作
@@ -112,9 +92,9 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        @Html.ActionLink("编辑", "Edit", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-pencil" })
-                                        @Html.ActionLink("查看", "Details", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-eye" })
-                                        @Html.ActionLink("删除", "Delete", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-window-close" })
+                                        @Html.ActionLink("编辑", "Edit", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-pencil", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                        @Html.ActionLink("查看", "Details", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-eye", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                        @Html.ActionLink("删除", "Delete", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-window-close", data_toggle = "modal", data_target = "#gridSystemModal" })
                                     </div>
                                 </td>
                             </tr>
@@ -124,7 +104,7 @@
             </div>
             <div class="card-body">
                 总计：@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, bookName = ViewBag.bookName, author = ViewBag.author }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, keyword = ViewBag.keyword }))
             </div>
         </div>
     </div>

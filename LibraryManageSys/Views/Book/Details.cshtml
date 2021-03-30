@@ -1,98 +1,105 @@
 ﻿@model LibraryManageSys.Models.Book
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
+    ViewBag.Title = "详情";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Book</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.bookName)
-        </dt>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">@ViewBag.Title</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.bookName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.bookName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.bookName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.author)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.author)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.author)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.author)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.publish)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.publish)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.publish)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.publish)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.type)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.type)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.amount)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.amount)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.amount)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.amount)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.currAmount)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.currAmount)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.currAmount)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.currAmount)
+                    </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.imageURL)
-        </dt>
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.imageURL)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.imageURL)
-        </dd>*@
+                        <dd>
+                            @Html.DisplayFor(model => model.imageURL)
+                        </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.introduction)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.addTime)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.introduction)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.addTime)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.addTime)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.addName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.addTime)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.addName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.addName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.introduction)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.addName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.introduction)
+                    </dd>
+                </dl>
+            </div>
 
-    </dl>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.bookId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

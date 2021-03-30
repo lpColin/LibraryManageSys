@@ -8,24 +8,13 @@ namespace LibraryManageSys.DAL
 {
     public class BookRepository:CommonDal<Book>,IBookDal
     {
-        public List<Book> FindBookList(string bookName, string author)
+        public List<Book> FindBookList(string keywords)
         {
             List<Book> bookList =null;
-            if (!string.IsNullOrEmpty(bookName))
-            {   
-                 if (!string.IsNullOrEmpty(author))
-                 {
-                     bookList = nContext.books.Where(b => b.bookName.Contains(bookName) && b.author.Contains(author)).ToList();
-                 }
-                 else {
-                     bookList = nContext.books.Where(b => b.bookName.Contains(bookName)).ToList();
-                 }
-            }else{
-                if(!string.IsNullOrEmpty(author)){
-                    bookList = nContext.books.Where(b => b.author.Contains(author)).ToList();
-                }else{
-                    bookList = nContext.books.ToList();
-                }
+            bookList = nContext.books.ToList();
+            if (!string.IsNullOrEmpty(keywords)) 
+            {
+                bookList = bookList.Where(o => o.author.Contains(keywords) || o.bookName.Contains(keywords)).ToList();
             }
             return bookList;
         }
