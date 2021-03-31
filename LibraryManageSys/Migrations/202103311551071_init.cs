@@ -77,11 +77,13 @@ namespace LibraryManageSys.Migrations
                 "dbo.User",
                 c => new
                     {
-                        userId = c.Int(nullable: false, identity: true),
-                        userName = c.String(nullable: false, maxLength: 2147483647),
-                        password = c.String(nullable: false, maxLength: 20),
+                        UserId = c.Int(nullable: false, identity: true),
+                        UserName = c.String(nullable: false, maxLength: 2147483647),
+                        Password = c.String(nullable: false, maxLength: 20),
+                        DisplayName = c.String(maxLength: 50),
+                        EmailAddress = c.String(maxLength: 50),
                     })
-                .PrimaryKey(t => t.userId);
+                .PrimaryKey(t => t.UserId);
             
         }
         

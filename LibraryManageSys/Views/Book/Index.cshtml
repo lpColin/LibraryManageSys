@@ -12,12 +12,11 @@
                 <form class="pull-right search-bar" method="get" action="#!" role="form">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <input type="hidden" name="search_field" id="search-field" value="title">
                             <button class="btn btn-default" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
                                 查询
                             </button>
                         </div>
-                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入关键字">
+                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入书名或者作者名">
                     </div>
                 </form>
                 <div class="toolbar-btn-action">
@@ -103,7 +102,6 @@
                 </div>
             </div>
             <div class="card-body">
-                总计：@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, keyword = ViewBag.keyword }))
             </div>
         </div>

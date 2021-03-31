@@ -37,28 +37,28 @@ namespace LibraryManageSys.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(UserViewModel userViewModel)
+        public ActionResult Register(RegisterAndLoginViewModel userViewModel)
         {
             try
             {
-                User user = new User() { userName = userViewModel.userName, password = userViewModel.password };
+                User user = new User() { UserName = userViewModel.RegisterViewModel.UserName, Password = userViewModel.RegisterViewModel.Password };
                 if (ModelState.IsValid)
                 {
-                    if (userService.Exist(user.userName))
+                    if (userService.Exist(user.UserName))
                     {
-                        ModelState.AddModelError("userName", "User Name hava exist");
-                        return View(userViewModel);
+                        ModelState.AddModelError("UserName", "用户名已存在！");
+                        return View("LoginAndRegister", userViewModel);
                     }
 
                     else if (user != null)
                     {
                         userService.Add(user);
-                        return View("RegisterSuccess");
+                        return RedirectToAction("Login");
                     }
                     else
                     {
                         ModelState.AddModelError("", "error");
-                        return View(userViewModel);
+                        return View("LoginAndRegister", userViewModel);
                     }
                 }
             }
@@ -84,19 +84,18 @@ namespace LibraryManageSys.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel Loginuser)
+        public ActionResult Login(RegisterAndLoginViewModel Loginuser)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var _user = userService.Find(Loginuser.UserName);
+                    var _user = userService.Find(Loginuser.UserViewModel.UserName);
 
-                    if (_user != null && Loginuser.Password == _user.password)
+                    if (_user != null && Loginuser.UserViewModel.Password == _user.Password)
                     {
-                        Loginuser.UserId = _user.userId;
                         Session.Add("user", _user);
-                        Session["userName"] = _user.userName;
+                        Session["userName"] = _user.DisplayName;
                         return RedirectToAction("Index", "Book");
                     }
                     else
@@ -114,7 +113,7 @@ namespace LibraryManageSys.Controllers
         }
 
         // GET: /User/Edit/5
-        public ActionResult Edit()
+        public ActionResult EditPassword()
         {
             User loginuser = new User();
             if (Session["user"] != null)
@@ -125,7 +124,7 @@ namespace LibraryManageSys.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
-            if (loginuser.userId.ToString() == null)
+            if (loginuser.UserId.ToString() == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -141,16 +140,16 @@ namespace LibraryManageSys.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User LogionUser)
+        public ActionResult EditPassword(ModifyPassword LogionUser)
         {
             if (ModelState.IsValid)
             {
                 if (LogionUser != null)
                 {
-                    userService.Update(LogionUser);
+                    var sessionUser = (User)Session["user"];
+                    sessionUser.Password = LogionUser.NewPassword;
+                    userService.Update(sessionUser);
                 }
-                //db.Entry(LogionUser).State = System.Data.Entity.EntityState.Modified;
-                //db.SaveChanges();         
                 return RedirectToAction("Index");
             }
             return View(LogionUser);

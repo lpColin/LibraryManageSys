@@ -15,16 +15,24 @@ namespace LibraryManageSys.Models
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int userId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        [Display(Name="UserName")]
-        public string userName { get; set; }
+        [Display(Name="用户名")]
+        public string UserName { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "The {0} must be at least {2} characters long")]
-        [Display(Name = "Password")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "密码长度至少为6位")]
+        [Display(Name = "密码")]
         [DataType(DataType.Password)]
-        public string password { get; set; }
+        public string Password { get; set; }
+
+        [Display(Name = "姓名")]
+        [StringLength(50)]
+        public string DisplayName { get; set; }
+
+        [Display(Name = "邮箱地址")]
+        [StringLength(50)]
+        public string EmailAddress { get; set; }
     }
 }

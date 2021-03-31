@@ -17,7 +17,7 @@
                                 查询
                             </button>
                         </div>
-                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入关键字">
+                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入读者名字">
                     </div>
                 </form>
                 <div class="toolbar-btn-action">
@@ -97,7 +97,6 @@
                 </div>
             </div>
             <div class="card-body">
-                总计：@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
             </div>
         </div>

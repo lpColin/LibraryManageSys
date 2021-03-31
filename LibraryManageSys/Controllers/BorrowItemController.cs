@@ -17,11 +17,15 @@ namespace LibraryManageSys.Controllers
         private LMSEntitys db = ContextFactory.GetCurrentContext();
 
         // GET: /BorrowItem/
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(string keyword = "", int page = 1)
         {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            var borrowItemVideMode = new BorrowViewModel(); 
-            borrowItemVideMode.BorrowItems = borrowitems.Where(b => b.status == Status.Borrow).OrderBy(p => p.burrowTime).ToPagedList(page, 5);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                borrowitems = borrowitems.Where(o => o.book.bookName.Contains(keyword) || o.reader.readerName.Contains(keyword));
+            }
+            var borrowItemVideMode = new BorrowViewModel();
+            borrowItemVideMode.BorrowItems = borrowitems.Where(b => b.status == Status.在借).OrderByDescending(p => p.burrowTime).ToPagedList(page, 5);
             return View(borrowItemVideMode);
         }
 
@@ -32,7 +36,7 @@ namespace LibraryManageSys.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BorrowItem borrowitem = db.borrowItems.Find(id);
+            BorrowItem borrowitem = db.borrowItems.Include(b => b.book).Include(b => b.reader).FirstOrDefault(o => o.borrowId == id.Value);
             if (borrowitem == null)
             {
                 return HttpNotFound();
@@ -44,7 +48,7 @@ namespace LibraryManageSys.Controllers
         public ActionResult Create()
         {
             BorrowItem _borrowItem = new BorrowItem();
-            _borrowItem.status = Status.Borrow;
+            _borrowItem.status = Status.在借;
             ViewBag.bookId = new SelectList(db.books, "bookId", "bookName");
             ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName");
 
@@ -70,7 +74,7 @@ namespace LibraryManageSys.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            borrowitem.status = Status.Borrow;
+            borrowitem.status = Status.在借;
             ViewBag.bookId = new SelectList(db.books, "bookId", "bookName");
             ViewBag.readerId = new SelectList(db.readers, "readerId", "readerName");
             try
@@ -108,22 +112,20 @@ namespace LibraryManageSys.Controllers
         }
 
         // GET: /BorrowItem/Edit/5
-        public ActionResult Return(int? id)
+        public ActionResult Return(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             BorrowItem borrowitem = db.borrowItems.Find(id);
             if (borrowitem == null)
             {
                 LogHelper.WriteLog(typeof(BorrowItemController), "HttpNotFound");
                 return HttpNotFound();
             }
-            return View("Return", borrowitem);
+            return View();
         }
 
-        public ActionResult Return2(int? id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Return(int? id)
         {
             IBorrowItemDal BorrowItemDal = RepositoryFactory.BorrowRepository;
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
@@ -136,7 +138,7 @@ namespace LibraryManageSys.Controllers
             try
             {
                 BorrowItemDal.returnBookAndReader(borrowitem.bookId, borrowitem.readerId);
-                borrowitem.status = Status.Return;
+                borrowitem.status = Status.已还;
                 if (Session["userName"] != null)
                 {
                     borrowitem.backOper = Session["userName"].ToString();
@@ -154,7 +156,7 @@ namespace LibraryManageSys.Controllers
             {
                 LogHelper.WriteLog(typeof(BorrowItemController), e);
             }
-            return RedirectToAction("ShowBorrowRecord");
+            return RedirectToAction("Index", "BorrowItem");
         }
 
         /// <summary>
@@ -162,10 +164,16 @@ namespace LibraryManageSys.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ShowBorrowRecord(int page = 1)
+        public ActionResult ReturnRecord(string keyword, int page = 1)
         {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            return View(borrowitems.Where(b => b.status == Status.Return).OrderBy(p => p.burrowTime).ToPagedList(page, 5));
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                borrowitems = borrowitems.Where(o => o.book.bookName.Contains(keyword) || o.reader.readerName.Contains(keyword));
+            }
+            var borrowItemVideMode = new BorrowViewModel();
+            borrowItemVideMode.BorrowItems = borrowitems.Where(b => b.status == Status.已还).OrderByDescending(p => p.burrowTime).ToPagedList(page, 5);
+            return View(borrowItemVideMode);
         }
 
 
@@ -199,7 +207,7 @@ namespace LibraryManageSys.Controllers
             try
             {
                 BorrowItemDal.CancelBookAndReader(borrowitem.bookId, borrowitem.readerId);
-                borrowitem.status = Status.Cancel;
+                borrowitem.status = Status.取消;
                 if (Session["userName"] != null)
                 {
                     borrowitem.backOper = Session["userName"].ToString();
@@ -228,7 +236,7 @@ namespace LibraryManageSys.Controllers
         public ActionResult ShowCancelRecord(int page = 1)
         {
             var borrowitems = db.borrowItems.Include(b => b.book).Include(b => b.reader);
-            return View(borrowitems.Where(b => b.status == Status.Cancel).OrderBy(p => p.burrowTime).ToPagedList(page, 5));
+            return View(borrowitems.Where(b => b.status == Status.取消).OrderBy(p => p.burrowTime).ToPagedList(page, 5));
         }
 
         // GET: /BorrowItem/Delete/5

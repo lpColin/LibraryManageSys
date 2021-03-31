@@ -1,32 +1,30 @@
 ﻿@model LibraryManageSys.Models.BorrowItem
 
 @{
-    ViewBag.Title = "Return";
+    Layout = null;
+    ViewBag.Title = "还书";
 }
 
-<h2>Return Book</h2>
-
-<div>
-    <h4>BorrowItem</h4>
-    <table class="table">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.book.bookName)</th>
-            <th>@Html.DisplayNameFor(model => model.reader.readerName)</th>
-            <th>@Html.DisplayNameFor(model => model.status)</th>
-            <th>@Html.DisplayNameFor(model => model.burrowTime)</th>
-            <th>@Html.DisplayNameFor(model => model.borrowOper)</th>
-        </tr>
-        <tr>
-            <td>@Html.DisplayFor(model => model.book.bookName)</td>
-            <td>@Html.DisplayFor(model => model.reader.readerName)</td>
-            <td>@Html.DisplayFor(model => model.status)</td>
-            <td>@Html.DisplayFor(model => model.burrowTime)</td>
-            <td>@Html.DisplayFor(model => model.borrowOper)</td>
-        </tr>
-        <tr>
-            <td>@Html.ActionLink("Return", "Return2", new {id = Model.borrowId })</td>
-            <td>@Html.ActionLink("Back to List", "Index")</td>
-        </tr>
-       </table>      
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">@ViewBag.Title</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div style="text-align:center; font-size:25px">
+                    <p3>
+                        确定还书操作？
+                    </p3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">点击保存</button>
+                </div>
+            }
+        </div>
+    </div>
 </div>
-

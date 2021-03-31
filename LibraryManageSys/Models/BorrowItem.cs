@@ -47,7 +47,7 @@ namespace LibraryManageSys.Models
         public virtual Reader reader { get; set; }
         
     }
-    public enum Status {Borrow,Return,Cancel}
+    public enum Status {在借,已还,取消}
     public class BorrowViewModel
     {
         public IPagedList<LibraryManageSys.Models.BorrowItem> BorrowItems { get; set; }

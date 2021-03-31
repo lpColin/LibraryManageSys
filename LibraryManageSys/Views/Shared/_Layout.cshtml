@@ -20,6 +20,7 @@
             <p>Copyright &copy; @DateTime.Now.Year - 图书管理系统</p>
         </footer>
     </div>
+    @Html.Partial("EditorTemplates/Dialog", ViewData.ModelState);
     @RenderSection("scripts", required: false)
 </body>
 </html>

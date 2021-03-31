@@ -16,17 +16,17 @@ namespace LibraryManageSys.BLL
 
         public bool Exist(string userName)
         {
-            return CurrentRepository.Exist(u => u.userName == userName);
+            return CurrentRepository.Exist(u => u.UserName == userName);
         }
 
         public User Find(int userID)
         {
-            return CurrentRepository.Find(u => u.userId== userID);
+            return CurrentRepository.Find(u => u.UserId== userID);
         }
 
         public User Find(string userName)
         {
-            return CurrentRepository.Find(u => u.userName == userName);
+            return CurrentRepository.Find(u => u.UserName == userName);
         }
 
         public IQueryable<User> FindPageList(int pageIndex, int pageSize, out int totalRecord, int order)

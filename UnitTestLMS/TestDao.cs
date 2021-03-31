@@ -24,10 +24,10 @@ namespace LibraryManageSys.DAL
            // LMSEntitys db = ContextFactory.GetCurrentContext();
             LMSEntitys db = new LMSEntitys();
             //var user = db.users.Where(u => u.userId == id);
-           var user = db.users.Where(u=>u.userId==id);
+           var user = db.users.Where(u=>u.UserId==id);
             foreach (var u in user)
             {
-                Console.Out.WriteLine(u.userName + u.userId + u.password);
+                Console.Out.WriteLine(u.UserName + u.UserId + u.Password);
             }  
         }
 

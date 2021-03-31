@@ -18,9 +18,14 @@ namespace LibraryManageSys.Controllers
         private LMSEntitys db = ContextFactory.GetCurrentContext();
 
         // GET: /Reader/
-        public ActionResult Index(int page =1)
+        public ActionResult Index(string keyword, int page = 1)
         {
-            return View(db.readers.OrderBy(p=>p.readerName).ToPagedList(page,5) );
+            var viewData = db.readers.OrderByDescending(o=>o.createTime);
+            if (!string.IsNullOrEmpty(keyword)) 
+            {
+                viewData.Where(o => o.readerName.Contains(keyword));
+            }
+            return View(viewData.ToPagedList(page,5) );
         }
 
         //get UserNamer from View

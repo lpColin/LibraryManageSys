@@ -13,22 +13,22 @@
             <ul class="nav nav-drawer">
                 <li class="nav-item"> <a href="Book"><i class="mdi mdi-home"></i> 首页</a> </li>
                 <li class="nav-item nav-item-has-subnav">
-                    <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 图书管理</a>
+                    <a href="javascript:void(0)"><i class="mdi mdi-book-multiple"></i> 图书管理</a>
                     <ul class="nav nav-subnav">
                         <li> @Html.ActionLink("图书查询", "Index", "Book") </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-subnav">
-                    <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 读者管理</a>
+                    <a href="javascript:void(0)"><i class="mdi mdi-account"></i> 读者管理</a>
                     <ul class="nav nav-subnav">
                         <li> @Html.ActionLink("读者管理", "Index", "Reader")</li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-subnav">
-                    <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 借还书管理</a>
+                    <a href="javascript:void(0)"><i class="mdi mdi-clipboard-check"></i> 借还书管理</a>
                     <ul class="nav nav-subnav">
                         <li>@Html.ActionLink("借书管理", "Index", "BorrowItem")</li>
-                        <li>@Html.ActionLink("还书管理", "ShowBorrowRecord", "BorrowItem")</li>
+                        <li>@Html.ActionLink("还书管理", "ReturnRecord", "BorrowItem")</li>
                     </ul>
                 </li>
             </ul>
@@ -53,15 +53,15 @@
             <ul class="topbar-right">
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
-                        <img class="img-avatar img-avatar-48 m-r-10" src="~/images/admin.jpg" alt="笔下光年" />
-                        <span>笔下光年 <span class="caret"></span></span>
+                        <img class="img-avatar img-avatar-48 m-r-10" src="~/images/admin.jpg" alt="@Session["userName"]" />
+                        <span>@Session["userName"] <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li> <a href="lyear_pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>
-                        <li> <a href="lyear_pages_edit_pwd.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                        @*<li> <a href="lyear_pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>*@
+                        <li> @Html.ActionLink(" 修改密码", "EditPassword", "User", new { }, new { @class = "mdi mdi-lock-outline", data_toggle = "modal", data_target = "#gridSystemModal" })</li>
                         <li> <a href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a></li>
                         <li class="divider"></li>
-                        <li> @Html.ActionLink("退出登录", "Logout", "User", new { }, new { @class = "mdi mdi-logout-variant" }) </li>
+                        <li> @Html.ActionLink(" 退出登录", "Logout", "User", new { }, new { @class = "mdi mdi-logout-variant" }) </li>
                     </ul>
                 </li>
                 <!--切换主题配色-->
@@ -211,4 +211,8 @@
     </div>
 </div>-->
 <!--对话框-->
-@Html.Partial("EditorTemplates/Dialog", ViewData.ModelState);
+<style>
+    .dropdown-menu > li > a > i {
+        margin-right: 0px;
+    }
+</style>

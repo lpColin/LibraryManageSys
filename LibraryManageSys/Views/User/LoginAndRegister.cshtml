@@ -1,4 +1,4 @@
-﻿@model LibraryManageSys.Models.LoginViewModel
+﻿@model LibraryManageSys.Models.RegisterAndLoginViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "登录注册";
@@ -17,27 +17,27 @@
                     <h1>学校图书管理系统</h1>
                     <div>
                         @*<input type="text" class="form-control" placeholder="用户名" required="" />*@
-                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "用户名" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.UserViewModel.UserName, new { @class = "form-control", @placeholder = "用户名" })
+                        @Html.ValidationMessageFor(m => m.UserViewModel.UserName, "", new { @class = "text-danger" })
                     </div>
                     <div>
                         @*<input type="password" class="form-control" placeholder="密码" required="" />*@
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "密码" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.UserViewModel.Password, new { @class = "form-control", @placeholder = "密码" })
+                        @Html.ValidationMessageFor(m => m.UserViewModel.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="clearfix"></div>
                     <div>
                         <button type="submit" class="btn btn-primary">登录</button>
-                        <button type="button" class="btn btn-primary">忘记密码?</button>
+                        @Html.ActionLink("注册", "Register", new { }, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#gridSystemModal" })
                     </div>
 
-                    <div class="clearfix"></div>
+                    @*<div class="clearfix"></div>
 
                     <div class="separator">
                         <div class="change_link">
                             <a href="#signup" class="to_register"> 注册页面 </a>
                         </div>
-                    </div>
+                    </div>*@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 }
             </section>
@@ -45,20 +45,58 @@
 
         <div id="register" class="animate form registration_form">
             <section class="login_content">
-                <form>
+                @using (Html.BeginForm("Register", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
                     <h1>用户注册</h1>
-                    <div>
-                        <input type="text" class="form-control" placeholder="用户名" required="" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RegisterViewModel.UserName, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8" id="Editor_left">
+                            @Html.EditorFor(model => model.RegisterViewModel.UserName)
+                            @Html.ValidationMessageFor(model => model.RegisterViewModel.UserName)
+                        </div>
                     </div>
-                    <div>
-                        <input type="email" class="form-control" placeholder="邮箱地址" required="" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RegisterViewModel.DisplayName, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8" id="Editor_left">
+                            @Html.EditorFor(model => model.RegisterViewModel.DisplayName)
+                            @Html.ValidationMessageFor(model => model.RegisterViewModel.DisplayName)
+                        </div>
                     </div>
-                    <div>
-                        <input type="password" class="form-control" placeholder="密码" required="" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RegisterViewModel.EmailAddress, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8" id="Editor_left">
+                            @Html.EditorFor(model => model.RegisterViewModel.EmailAddress)
+                            @Html.ValidationMessageFor(model => model.RegisterViewModel.EmailAddress)
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RegisterViewModel.Password, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8" id="Editor_left">
+                            @Html.EditorFor(model => model.RegisterViewModel.Password)
+                            @Html.ValidationMessageFor(model => model.RegisterViewModel.Password)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RegisterViewModel.ConfirmPassword, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8" id="Editor_left">
+                            @Html.EditorFor(model => model.RegisterViewModel.ConfirmPassword)
+                            @Html.ValidationMessageFor(model => model.RegisterViewModel.ConfirmPassword)
+                        </div>
+                    </div>
+
+                    @*<div class="checkbox">
+                        <input type="checkbox" checked="checked" required /> I agree <a href="#" style="color:red">《User Agreement》 </a>
+                    </div>*@
                     <div class="clearfix"></div>
                     <div>
-                        <button type="button" class="btn btn-primary">注册用户</button>
+                        <button type="submit" class="btn btn-primary">注册</button>
+                        @*<button type="button" class="btn btn-primary">忘记密码?</button>*@
                     </div>
 
                     <div class="clearfix"></div>
@@ -68,7 +106,8 @@
                             <a href="#signin" class="to_register"> 登录页面 </a>
                         </div>
                     </div>
-                </form>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                }
             </section>
         </div>
     </div>
@@ -104,6 +143,11 @@
     .error_message {
         float: left;
         padding: 5px 0px 20px;
+    }
+
+    .login_content form div a {
+        font-size: 14px;
+        margin: 0px 15px 0 0;
     }
 </style>
 <script>
