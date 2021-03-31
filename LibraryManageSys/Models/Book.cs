@@ -30,7 +30,6 @@ namespace LibraryManageSys.Models
         public string publish { get; set; }
        
         [Display(Name = "类型")]
-        [Required]
         public string type { get; set; }
 
         [Display(Name = "数量")]

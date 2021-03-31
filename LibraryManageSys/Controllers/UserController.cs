@@ -41,7 +41,13 @@ namespace LibraryManageSys.Controllers
         {
             try
             {
-                User user = new User() { UserName = userViewModel.RegisterViewModel.UserName, Password = userViewModel.RegisterViewModel.Password };
+                User user = new User() 
+                { 
+                    UserName = userViewModel.RegisterViewModel.UserName,
+                    Password = userViewModel.RegisterViewModel.Password,
+                    DisplayName = userViewModel.RegisterViewModel.DisplayName,
+                    EmailAddress = userViewModel.RegisterViewModel.EmailAddress
+                };
                 if (ModelState.IsValid)
                 {
                     if (userService.Exist(user.UserName))
@@ -49,10 +55,10 @@ namespace LibraryManageSys.Controllers
                         ModelState.AddModelError("UserName", "用户名已存在！");
                         return View("LoginAndRegister", userViewModel);
                     }
-
                     else if (user != null)
                     {
-                        userService.Add(user);
+                        db.users.Add(user);
+                        db.SaveChanges();
                         return RedirectToAction("Login");
                     }
                     else
@@ -76,7 +82,7 @@ namespace LibraryManageSys.Controllers
             {
                 return RedirectToAction("Index", "Book");
             }
-            else 
+            else
             {
                 return View("LoginAndRegister");
             }

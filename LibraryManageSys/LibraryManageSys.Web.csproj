@@ -169,9 +169,9 @@
     <Compile Include="DAL\BookRepository.cs" />
     <Compile Include="DAL\CommonDal.cs" />
     <Compile Include="DAL\ContextFactory.cs" />
-    <Compile Include="Migrations\202103311551071_init.cs" />
-    <Compile Include="Migrations\202103311551071_init.Designer.cs">
-      <DependentUpon>202103311551071_init.cs</DependentUpon>
+    <Compile Include="Migrations\202103311655118_init.cs" />
+    <Compile Include="Migrations\202103311655118_init.Designer.cs">
+      <DependentUpon>202103311655118_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Dictionary.cs" />
     <Compile Include="DAL\IBookDal.cs" />
@@ -490,8 +490,8 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103311551071_init.resx">
-      <DependentUpon>202103311551071_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103311655118_init.resx">
+      <DependentUpon>202103311655118_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

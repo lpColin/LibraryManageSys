@@ -46,7 +46,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.RegisterViewModel.Password, new { @class = "control-label col-md-4" })
                     <div class="col-md-8" id="Editor_left">
-                        @Html.EditorFor(model => model.RegisterViewModel.Password)
+                        @Html.PasswordFor(model => model.RegisterViewModel.Password)
                         @Html.ValidationMessageFor(model => model.RegisterViewModel.Password)
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.RegisterViewModel.ConfirmPassword, new { @class = "control-label col-md-4" })
                     <div class="col-md-8" id="Editor_left">
-                        @Html.EditorFor(model => model.RegisterViewModel.ConfirmPassword)
+                        @Html.PasswordFor(model => model.RegisterViewModel.ConfirmPassword)
                         @Html.ValidationMessageFor(model => model.RegisterViewModel.ConfirmPassword)
                     </div>
                 </div>

@@ -15,7 +15,7 @@ namespace LibraryManageSys.Migrations
                         bookName = c.String(nullable: false, maxLength: 2147483647),
                         author = c.String(maxLength: 2147483647),
                         publish = c.String(maxLength: 2147483647),
-                        type = c.String(nullable: false, maxLength: 2147483647),
+                        type = c.String(maxLength: 2147483647),
                         amount = c.Int(nullable: false),
                         currAmount = c.Int(nullable: false),
                         imageURL = c.String(maxLength: 2147483647),

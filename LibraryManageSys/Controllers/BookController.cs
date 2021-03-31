@@ -51,7 +51,7 @@ namespace LibraryManageSys.Controllers
                     books = books.OrderByDescending(s => s.addTime).ToList();
                     break;
                 default:
-                    books = books.OrderBy(s => s.bookName).ToList();
+                    books = books.OrderByDescending(s => s.addTime).ToList();
                     break;
             }
             for (int i = 0; i < books.Count(); i++)
