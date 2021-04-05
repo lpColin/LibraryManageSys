@@ -11,62 +11,65 @@
             <h4 class="modal-title" id="gridSystemModalLabel">@ViewBag.Title</h4>
         </div>
         <div class="modal-body">
-            @using (Html.BeginForm())
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "Post", OnSuccess = "processData(data)" }))
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                    @Html.ValidationSummary(true)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.bookName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2 control-label" >
+                            <span style="color:red">*</span>
+                            @Html.LabelFor(model => model.bookName)
+                        </div>
                         <div class="col-md-10" id="Editor_left">
                             @Html.EditorFor(model => model.bookName)
-                            @Html.ValidationMessageFor(model => model.bookName)
+                            @Html.ValidationMessageFor(model => model.bookName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.author, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10" id="Editor_left">
-                            @Html.EditorFor(model => model.author)
-                            @Html.ValidationMessageFor(model => model.author)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.author, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" id="Editor_left">
+                                @Html.EditorFor(model => model.author)
+                                @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.publish, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10" id="Editor_left">
-                            @Html.EditorFor(model => model.publish)
-                            @Html.ValidationMessageFor(model => model.publish)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.publish, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" id="Editor_left">
+                                @Html.EditorFor(model => model.publish)
+                                @Html.ValidationMessageFor(model => model.publish, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.type, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10" id="Editor_left">
-                            @Html.DropDownList("list")
-                            @Html.HiddenFor(model => model.type)
-                            @Html.ValidationMessageFor(model => model.type)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.type, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" id="Editor_left">
+                                @Html.DropDownList("list")
+                                @Html.HiddenFor(model => model.type)
+                                @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.amount, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10" id="Editor_left">
-                            @Html.EditorFor(model => model.amount)
-                            @Html.ValidationMessageFor(model => model.amount)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.amount, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" id="Editor_left">
+                                @Html.EditorFor(model => model.amount)
+                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.introduction, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10" id="Editor_left">
-                            @Html.TextAreaFor(model => model.introduction, 3, 30, null)
-                            @Html.ValidationMessageFor(model => model.introduction)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.introduction, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" id="Editor_left">
+                                @Html.TextAreaFor(model => model.introduction, 3, 30, null)
+                                @Html.ValidationMessageFor(model => model.introduction, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="submit" class="btn btn-primary">点击保存</button>

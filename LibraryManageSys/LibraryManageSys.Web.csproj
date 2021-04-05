@@ -408,7 +408,6 @@
     <Content Include="fonts\materialdesignicons.ttf" />
     <Content Include="fonts\materialdesignicons.woff" />
     <Content Include="fonts\materialdesignicons.woff2" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\custom.js" />
@@ -418,10 +417,22 @@
     <Content Include="Scripts\ion-rangeslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\jconfirm\jquery-confirm.min.css" />
     <Content Include="Scripts\jconfirm\jquery-confirm.min.js" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="Scripts\jquery-tags-input\jquery.tagsinput.min.css" />
     <Content Include="Scripts\jquery-tags-input\jquery.tagsinput.min.js" />
     <Content Include="Scripts\jquery.bootstrap.wizard.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lightyear.js" />
     <Content Include="Scripts\main.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -480,6 +491,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

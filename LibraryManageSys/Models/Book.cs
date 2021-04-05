@@ -19,7 +19,7 @@ namespace LibraryManageSys.Models
         [Key]
         public int bookId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "字段不能为空")]
         [Display(Name="书名")]
         public string bookName { get; set; }
 

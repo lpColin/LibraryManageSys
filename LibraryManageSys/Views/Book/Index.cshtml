@@ -16,11 +16,12 @@
                                 查询
                             </button>
                         </div>
-                        <input type="text" class="form-control" value=@ViewBag.keyword name="keyword" placeholder="请输入书名或者作者名">
+                        <input type="text" class="form-control" name="keyword" placeholder="请输入书名或者作者名">
                     </div>
                 </form>
                 <div class="toolbar-btn-action">
-                    @Html.ActionLink("新增", "Create", new { }, new { @class = "btn btn-primary m-r-5 mdi mdi-plus", data_toggle = "modal", data_target = "#gridSystemModal" })
+                    @*@Html.ActionLink("新增", "Create", new { }, new { @class = "btn btn-primary m-r-5 mdi mdi-plus", data_toggle = "modal", data_target = "#gridSystemModal" })*@
+                    @Ajax.ActionLink("新增", "Create", new { }, new AjaxOptions { HttpMethod = "Get", OnSuccess = "processData" }, new { @class = "btn btn-primary m-r-5 mdi mdi-plus", data_toggle = "modal", data_target = "#gridSystemModal" })
                     @Html.ActionLink("删除", "Delete", new { }, new { @class = "btn btn-danger m-r-5 mdi mdi-window-close" })
                 </div>
             </div>
@@ -91,9 +92,9 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        @Html.ActionLink("编辑", "Edit", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-pencil", data_toggle = "modal", data_target = "#gridSystemModal" })
-                                        @Html.ActionLink("查看", "Details", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-eye", data_toggle = "modal", data_target = "#gridSystemModal" })
-                                        @Html.ActionLink("删除", "Delete", new { id = item.bookId }, new { @class = "btn btn-sm btn-default mdi mdi-window-close", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                        @Ajax.ActionLink("编辑", "Edit", new { id = item.bookId }, new AjaxOptions { HttpMethod = "Get", OnSuccess = "processData" }, new { @class = "btn btn-sm btn-default mdi mdi-pencil", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                        @Ajax.ActionLink("查看", "Details", new { id = item.bookId }, new AjaxOptions { HttpMethod = "Get", OnSuccess = "processData" }, new { @class = "btn btn-sm btn-default mdi mdi-eye", data_toggle = "modal", data_target = "#gridSystemModal" })
+                                        @Ajax.ActionLink("删除", "Delete", new { id = item.bookId }, new AjaxOptions { HttpMethod = "Get", OnSuccess = "processData" }, new { @class = "btn btn-sm btn-default mdi mdi-window-close", data_toggle = "modal", data_target = "#gridSystemModal" })
                                     </div>
                                 </td>
                             </tr>
@@ -107,3 +108,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function processData(data) {
+        var target = $("#gridSystemModal");
+        target.html(data);
+    };
+    //$(function () {
+    //    $('#gridSystemModal').on('hide.bs.modal', function () {
+    //        var target = $("#gridSystemModal");
+    //        target.empty();
+    //    });
+    //});
+</script>

@@ -114,10 +114,11 @@ namespace LibraryManageSys.Controllers
                 {
                     book.addName = Session["userName"].ToString();
                 }
-                else {
+                else
+                {
                     return RedirectToAction("Login", "User");
-                } 
-                
+                }
+
                 book.addTime = DateTime.Now;
                 if (ModelState.IsValid)
                 {
@@ -132,6 +133,7 @@ namespace LibraryManageSys.Controllers
                 throw e;
             }
             return View(book);
+            //return Json(new { success = false, errors = ModelState });
             //return PartialView("EditorTemplates/Dialog", book);
         }
 
